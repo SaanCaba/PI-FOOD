@@ -1,0 +1,35 @@
+.contenedor-loader{
+    background-image: ('./imagenes/fondoHome.png');
+    min-height: 100vh;
+    display: block;
+    height: max-content;
+    width: max-content;
+    margin: auto;
+}
+
+.loader{
+    position: fixed;
+    z-index: 999;
+    height: 140px;
+    width: 100px;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.loading{
+    font-weight: bold;
+    position: fixed;
+    z-index: 999;
+    height: 140px;
+    width: 100px;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}

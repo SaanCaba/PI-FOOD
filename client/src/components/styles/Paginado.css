@@ -1,0 +1,33 @@
+.paginado{
+    list-style:none; font-size:12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin:15px;
+    border-radius: 30px;
+}
+
+a{
+    text-decoration: none;
+    color:rgb(236, 235, 235);
+}
+
+.numero{
+    color:rgb(226, 223, 223);
+    border: solid 2px white;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+}
+
+
+.numero:hover{
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    transition:1s;
+}

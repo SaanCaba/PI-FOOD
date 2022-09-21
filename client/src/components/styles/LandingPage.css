@@ -1,0 +1,79 @@
+/* html, body {
+    background-image:url('./imagenes/music-road-night-restaurant-city-dark-1092199-pxhere.com\ \(1\).jpg');
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    min-height: 100vh;
+    } */
+    
+.container-landing {
+    background-image:url('./imagenes/music-road-night-restaurant-city-dark-1092199-pxhere.com\ \(1\).jpg');
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+    }
+
+.titulo > h1{
+    transition: .5s linear;
+}
+
+.titulo{
+    color: white;
+    display: block;
+    height: max-content;
+    width: max-content;
+    margin: auto;
+    font-size: 30px;
+}
+
+.titulo:hover{
+    text-shadow: -1px 0 #414D68, 0 1px #414D68, 1px 0 #414D68, 0 -1px #414D68, -2px 2px 0 #414D68, 2px 2px 0 #414D68, 1px 1px #414D68, 2px 2px #414D68, 3px 3px #414D68, 4px 4px #414D68, 5px 5px #414D68; 
+    font-size: 33px;
+    color: white;
+    text-shadow: 0 0 10px #fff;
+    transition: 1s;
+}
+
+.cont-cooking{
+    height: 0.1px;
+}
+
+.cooking{
+    padding-top: 80px;
+    height: 500px;
+}
+
+.cont-button{
+    display: block;
+    height: max-content;
+    width: max-content;
+    margin: auto;
+    padding-top:300px ;
+    transition: .5s linear;
+}
+
+
+.button-start{
+    background-color: rgb(11, 11, 11);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+    color: white;
+    padding-left: 49px;
+    padding-right: 49px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin:15px;
+    cursor: pointer;
+    border: none;
+    
+}
+
+
+.button-start:hover{
+    background-color:rgb(30, 30, 30) ;
+    font-size: 25px;
+    transition: 1s;
+}

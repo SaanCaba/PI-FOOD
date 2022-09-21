@@ -1,0 +1,115 @@
+.container{
+    background-image: url('./imagenes/fondodetails.png');
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+.btn-home{
+    margin: 10px;
+    padding:10px;
+    border-radius: 10%;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: rgb(42, 42, 42);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.cont-details{
+    height: max-content;
+    border: 12px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+    border-radius: 10px;
+}
+
+.title-detail{
+    display: block;
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    background-color: white;
+    padding: 15px;
+    margin-top:12px;
+    margin-bottom:12px;
+    border-radius: 10px;
+}
+
+.img-detail{
+    border-radius: 9px;
+    border: 2px solid black;
+}
+
+.dieta-detail{
+    color: rgba(255, 255, 255, 0.948);
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    font-size: 20px;
+}
+
+.dieta-detail:hover{
+    font-size: 25px;
+    transition: 1s;
+}
+.summary{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 280px;
+    margin-left: 280px;
+    margin-top: 15px;
+    background-color: blue;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+.steps-detail{
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 280px;
+    margin-left: 280px;
+    background-color: blue;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px; 
+    margin-bottom: 20px;
+}
+
+.healthscore-detail-green{
+    display: block;
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    background-color: rgb(70, 251, 70);
+    margin-top:10px;
+    padding: 12px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+.healthscore-detail-red{
+    display: block;
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    background-color: rgb(236, 47, 47);
+    margin-top:10px;
+    padding: 12px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+.dishtype{
+    display: block;
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    background-color: rgb(253, 253, 253);
+    padding: 12px;
+    border-radius: 9px;
+    font-weight: bold;
+}

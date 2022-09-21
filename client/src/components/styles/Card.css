@@ -1,0 +1,111 @@
+.card {
+    border-radius: 25px;
+    border: 2px solid #000000;
+    padding: 20px;
+    margin:18px;
+    background-image: url(https://i.pinimg.com/originals/12/6f/15/126f155568365be572906538869a611d.jpg);
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.card:hover{
+  box-shadow: 2px 5px 10px 2px black;
+  transition: 1s;
+}
+
+.link{
+  text-decoration:none;
+}
+
+.details{
+  color: rgb(23, 22, 22);
+  font-weight: bold;
+  font-size: 19px;
+  display: block;
+  width: max-content;
+  height: max-content;
+  margin: auto;
+  border: none;
+  background-color: white;
+  padding: 13px;
+  margin-top: 15px;
+  border-radius: 22%;
+  cursor: pointer;
+}
+
+.details:hover {
+  background: #ddd;
+}
+
+.btn-dlt{
+  color:white;
+  background-color: rgb(210, 29, 29);
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  position:absolute;
+  right: 10px;
+  top: 2px;
+  cursor: pointer;
+}
+
+.btn-dlt:hover{
+  background-color: rgb(229, 9, 9);
+}
+
+.header{
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.header:hover{
+   color: black;
+    background-color: white;
+    transition: 1s;
+}
+
+.dieta{
+  display: block;
+  width: max-content;
+  height: max-content;
+  margin: auto;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 25px;
+  color: white;
+}
+
+
+  .img{
+    border: solid 2px black;
+    height: fit-content;
+    object-fit: contain;
+    border-radius: 10%;
+  }
+  .img:hover{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s;
+  }
+
+.healthScore-green{
+  position: absolute;
+  top: 55%;
+  left: 75%;
+  font-weight: bold;
+  font-size: 19px;
+  color: green;
+}
+
+.healthScore-red{
+  position: absolute;
+  top: 55%;
+  left: 75%;
+  font-weight: bold;
+  font-size: 19px;
+  color: red;
+}

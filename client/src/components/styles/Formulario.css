@@ -1,0 +1,80 @@
+
+.button-home{
+    margin: 15px;
+    padding: 10px;
+    border-radius: 30px;
+    border: 2px solid wheat;
+    font-weight: bold;
+    width: 120px;
+    height: 40px;
+    background-color: rgb(36, 36, 36);
+    color: aliceblue;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.button-home:hover{
+    opacity: 1;
+    transition:1s;
+}
+.error{
+    color:red;
+    font-weight: bold;
+    background-color: rgb(175, 177, 178);
+}
+
+.contenedor{
+    background-image: url('./imagenes/createRecipe.jpg');
+    background-repeat: repeat;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.form{
+    padding: 60px;
+    max-width: 400px;
+    background-color: #535050;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-radius: 30px;  
+    border: black solid 2px;
+}
+  .form input, .form textarea, .form select{
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; 
+    border: none; 
+    color: #000000; 
+    font-size: 1em;
+    resize: none; 
+  }
+
+  .form button {
+      display: inline-block;
+      background-color: #1d1b1b;
+      padding: 10px 45px 10px 45px;
+      border: 0;
+      font-weight: bold;
+      border-radius: 30px;
+      border: 2px solid black;
+      font-size: 1em; 
+      color: 	white;
+    cursor: pointer;
+  }
+  .form button:hover{
+      background-color: #323131;
+      transition: 1s;
+  }
+  textarea {  resize: none;}
+
+.contenedor-principal{
+    margin: 4px;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+
+
