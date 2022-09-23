@@ -10,7 +10,7 @@ describe('Diet model', () => {
   );
 
   describe('Validaciones', () =>{
-    beforeEach(()=> Diet.sync({force:false}))
+    beforeEach(()=> Diet.sync({force:true}))
     describe('name', () =>{
       it('Devolver un error si el nombre es null', (done) =>{
         Diet.create({})
@@ -18,7 +18,7 @@ describe('Diet model', () => {
         .catch(()=> done())
       })
       it('Debe funcionar con un nombre valido', ()=>{
-        Diet.create({name:'vegetariana'})
+        Diet.create({name:'vegetariana-testing'})
       })
     })
 

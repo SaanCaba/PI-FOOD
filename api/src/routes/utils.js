@@ -13,8 +13,8 @@ lugar de donde traer 100 productos
 // funciones para unir BD con api.
 const getApi = async () =>{
     try {
-        // const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
-        const response = await axios.get('https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5')
+        const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+        // const response = await axios.get('https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5')
         let results = await response.data.results.map(e => {
         return {
             id: e.id,

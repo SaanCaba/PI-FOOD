@@ -4,6 +4,7 @@ const {getApi, getAllinfo, getDb} = require('./utils.js')
 const {Recipe} = require('../db.js')
 const {Diet} = require('../db.js')
 const { default: axios } = require('axios')
+const {API_KEY} = process.env;
 
 router.get('/', async (req,res) => {
     const {name} = req.query;
@@ -49,27 +50,27 @@ router.get('/:idReceta', async (req,res)=> {
         }
           let realId = Number(idReceta)
         // si no esta en db, lo voy a buscar a esta url por id.
-        // let allInfo = await axios.get(`https://api.spoonacular.com/recipes/${realId}/information?apiKey=${API_KEY}`);
-        // let arr = [] // meto allInfo enn un array para poder trabajarlo mejor
-        // arr.push(infoApiMock.data)
-        // let response = arr.map(e => {
-        // return {
-        // id: e.id,
-        // vegetarian : e.vegetarian,
-        // title : e.title,
-        // diets: e.diets.map(e => {return {name: e}}),
-        // image: e.image,
-        // dishTypes: e.dishTypes.map(e => {return{name: e}}),
-        // healthScore: e.healthScore,
-        // summary: e.summary,
-        // steps: e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?.map(e => e.step).join('')
-        //     }
-        // })
-        // con MOCK API.
-        let allInfo = await getAllinfo()
-        let filtrado = allInfo.filter(e => e.id === realId)
-        res.json(filtrado)
-
+        let allInfo = await axios.get(`https://api.spoonacular.com/recipes/${realId}/information?apiKey=${API_KEY}`);
+        let arr = [] // meto allInfo enn un array para poder trabajarlo mejor
+        arr.push(allInfo.data)
+        let response = arr.map(e => {
+        return {
+        id: e.id,
+        vegetarian : e.vegetarian,
+        title : e.title,
+        diets: e.diets.map(e => {return {name: e}}),
+        image: e.image,
+        dishTypes: e.dishTypes.map(e => {return{name: e}}),
+        healthScore: e.healthScore,
+        summary: e.summary,
+        steps: e.analyzedInstructions[0] && e.analyzedInstructions[0].steps?.map(e => e.step).join('')
+            }
+        })
+        // // con MOCK API.
+        // let allInfo = await getAllinfo()
+        // let filtrado = allInfo.filter(e => e.id === realId)
+        // res.json(filtrado)
+        res.json(response)
     }catch(error) {
 
         console.log(error)
