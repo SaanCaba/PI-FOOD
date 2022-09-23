@@ -5,57 +5,51 @@ import { findRecipe } from '../actions/index'
 import { getRecipes } from '../actions/index'
 import './styles/SearchBar.css'
 
-function validate(value){
-    let errors = {}
-    // input es el estado local
-    if(!value){
-        errors.vacio = 'El buscador está vacío '
-        return errors
-    }
-    if(value.length === 0){
-        errors.msg = 'no hay nada con ese valor'
-        return errors
-    }
-    if(value){
-        errors.vacio=''
-        errors.msg = ''
-        return errors
-    }
-
-}
-
 function SearchBar() {
     const findRecipes = useSelector(state => state.recipes)
     const[recipe, setRecipe] = useState('')
-    const[errors, setErrors] = useState({})
+    const[errors, setErrors] = useState({
+        vacio:'',
+        msg:''
+    })
+
     const dispatch = useDispatch()
     // const recipes = useSelector(state => state.recipes)
 
     //manejador del input (input de busqueda)
     const handleChange = (e) => {
         e.preventDefault()
-        setErrors(e.target.value)
+        setErrors({
+            vacio:'',
+            msg:''
+        })
         setRecipe(e.target.value)
     }
     useEffect(()=>{
         dispatch(getRecipes())
     },[dispatch])
     //manejador del submit(boton de busqueda)
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
+    dispatch(findRecipe(recipe.toLowerCase()))
     if(recipe === ''){
-        dispatch(findRecipe(recipe.toLowerCase()))
-        setErrors(validate(e.target.value))
+      return  setErrors({
+            vacio : 'El buscador está vacío'
+        })
     }
     if(findRecipes.length === 0){
-        dispatch(findRecipe(recipe.toLowerCase()))
-       setErrors(validate(findRecipes))
+        console.log(findRecipes)
+      return setErrors({
+        msg:'no se encontró nada con ese nombre'
+       })
     }
-    else{
-        setErrors(validate(findRecipes))
-        setErrors(validate(recipe))
-        dispatch(findRecipe(recipe.toLowerCase()))
-     }
+    dispatch(findRecipe(recipe.toLowerCase()))
+    setErrors({
+        vacio:'',
+        msg:''
+    })
     }
   return (
     <form className='input-search'>
@@ -64,7 +58,7 @@ function SearchBar() {
         <br />
         {errors.vacio?(
             <label className='error'>{errors.vacio}</label>
-        ): ''} 
+        ): ''}
         {errors.msg?(
             <label className='error'>{errors.msg}</label>
         ) : ''}

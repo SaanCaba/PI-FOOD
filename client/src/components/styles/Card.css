@@ -56,9 +56,10 @@
 .header{
     color: white;
     background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    padding: 5px;
     border-radius: 30px;
 }
 
@@ -69,14 +70,10 @@
 }
 
 .dieta{
-  display: block;
-  width: max-content;
-  height: max-content;
-  margin: auto;
   font-weight: bold;
   font-size: 20px;
-  padding: 25px;
-  color: white;
+  padding: 20px;
+  color: rgb(144, 214, 95);
 }
 
 
@@ -87,24 +84,18 @@
     border-radius: 10%;
   }
   .img:hover{
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
     transition: 1s;
   }
 
 .healthScore-green{
-  position: absolute;
-  top: 55%;
-  left: 75%;
   font-weight: bold;
   font-size: 19px;
   color: green;
 }
 
 .healthScore-red{
-  position: absolute;
-  top: 55%;
-  left: 75%;
   font-weight: bold;
   font-size: 19px;
   color: red;

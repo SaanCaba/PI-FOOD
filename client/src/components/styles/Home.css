@@ -4,12 +4,16 @@
 }
 
 
+
 .cards{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     width: max-content;
     height: max-content;
-    margin: auto;
+    margin: auto; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 35px;
 }
 
 .background-home{
@@ -29,14 +33,14 @@
     height: max-content;
     position: absolute;
     border-radius: 30%;
-    bottom: 105px;
-    right: -875px;
+    bottom: -2px;
+    right: -40px;
     height: 130px;
     opacity: .8;
 }
 
 .img-flecha:hover{
-    bottom: 125px;
+    bottom: 13px;
     border: none;
     background-color: black;
     box-shadow: 0px 0px 0px 10px white,
@@ -97,6 +101,7 @@
     margin-top:10px;
     margin-bottom: 10px;
     border-radius: 10px;
+    border: 3px solid black;
 }
 
 .refresh{
@@ -110,11 +115,23 @@
 }
 
 .cont-select{
-    display: block;
+    /* display: block;
     height: max-content;
+    width: max-content; */
+    background-color: rgb(15, 15, 15);
+    border: 3px solid white;
+    border-radius: 12px;
     width: max-content;
     margin: auto;
-    padding: 10px;
+    padding-top: 10px;
+}
+
+.title-selects{
+    width: max-content;
+    margin: auto;
+    color: rgb(225, 223, 223);
+    padding: 2px;
+    text-decoration: underline;
 }
 
 .selects{

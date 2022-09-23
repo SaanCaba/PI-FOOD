@@ -5,6 +5,7 @@
     height: max-content;
     width: max-content;
     margin: auto;
+    background-color: red;    
 }
 
 .loader{
@@ -14,10 +15,7 @@
     width: 100px;
     overflow: show;
     margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    right: 1000px;
 }
 
 .loading{
@@ -28,8 +26,6 @@
     width: 100px;
     overflow: show;
     margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    right: 1000px;
+    top: 620px;
 }

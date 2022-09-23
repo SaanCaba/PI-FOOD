@@ -23,13 +23,11 @@
 }
 
 .contenedor{
-    background-image: url('./imagenes/createRecipe.jpg');
+    background-image:url('./imagenes/Diseño\ sin\ título\ \(3\).png');
     background-repeat: repeat;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    min-height: 100vh;
+    width: 100%;
 }
 
 .form{
@@ -42,6 +40,7 @@
     border: black solid 2px;
 }
   .form input, .form textarea, .form select{
+    border-radius: 5px;
     margin-bottom: 15px;
     width: 100%;
     padding: 10px;
@@ -50,6 +49,14 @@
     color: #000000; 
     font-size: 1em;
     resize: none; 
+  }
+
+  .form input:focus{
+    outline: none;
+  }
+
+  .form textarea:focus{
+    outline: none;
   }
 
   .form button {
@@ -76,5 +83,39 @@
     box-sizing: border-box;
 }
 
+.container-recipecreada{
+        margin:1px;
+        background-color: red;
+        margin-left: 500px;
+        margin-right: 500px;
+        margin-bottom: 50px;
+        margin-top:50px;
+        background-image: url(https://i.pinimg.com/originals/12/6f/15/126f155568365be572906538869a611d.jpg);
+        padding: 2px;
+        top: 230px;
+        right: 213px;
+        border-radius: 30px;
+        box-shadow: 0px 0px 0px 5px black;
+}
 
+.recipe-title{
+    display: block;
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    padding-top: 30px;
+    color: rgb(231, 231, 231);
+}
 
+.recipe-img{
+    padding: 30px;
+    margin: 10px;
+    height: fit-content;
+    object-fit: contain;
+    border-radius: 10%;
+}
+
+.tu-receta{
+    font-size: 35px;
+    color: rgb(231, 231, 231);
+}

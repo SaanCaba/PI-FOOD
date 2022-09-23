@@ -1,8 +1,8 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
-import { createRecipe, getDiets } from '../actions/index'
+import { createRecipe, getDiets, getRecipes } from '../actions/index'
 import {useDispatch, useSelector} from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import './styles/Formulario.css'
 
 
@@ -11,27 +11,6 @@ let simbols = ['?','¿','=','/','%','$','#','.',',','-','_','!','¡']
 
 function validate(recipe){
   let errors = {}
-  if(recipe.summary === '' && recipe.title === '' && recipe.diets.length === 0){
-    errors.todos = 'faltan el title, resumen, Healt Score y alguna dieta.'
-    console.log(errors.todos)
-    return errors
-  }else{
-  errors.diets =[];
-  errors.title = ''
-  errors.summary = ''
-  }
-  if(recipe.title === ''){
-    errors.title = 'no hay nombre'
-  }
-  if(recipe.summary === ''){
-    errors.summary = 'no hay resumen'
-  }
-  if(recipe.diets.length === 0){
-    errors.diets = 'hay que seleccionar una dieta'
-  }
-  if(recipe.healthScore === ''){
-    errors.healthScore = 'Hay que seleccionar un Health Score'
-  }
   if(Number(recipe.healthScore) < 0 || Number(recipe.healthScore) > 100){
     errors.healthScore = 'Health score debe ser mayor a cero y menor a cien'
   }
@@ -39,18 +18,33 @@ function validate(recipe){
   if(find){
     errors.title = 'Simbolos no válidos'
   }
+  errors.todos = ''
   return errors
 }
 
 
 function Formulario() {
     const dispatch = useDispatch()
-    // const history = useHistory()
+
+    const history = useHistory()
+
     const typeDiets = useSelector(state => state.diets)
-    const [creado, setCreado] = useState('')
-    const [errors, setErrors] = useState({})
+
+    const allRecipes = useSelector(state => state.recipes)
+
+    const [errorRepetido, setErrorRepetido] = useState('')
+
+    const [sinCompletar, setSinCompletar] = useState('')
+
+    const [errors, setErrors] = useState({
+      title: '',
+      diets:'',
+      summary:'',
+      healthScore:''
+    })
 
    useEffect(()=>{
+    dispatch(getRecipes())
     dispatch(getDiets())
    },[dispatch])
 
@@ -63,15 +57,26 @@ function Formulario() {
         image:'', //imagen por default
         diets:[]
     })
+
+    
+
     const handleChange = (e) => {
         setRecipe({
           ...recipe,
           [e.target.name] : e.target.value
         })
+        setErrors({
+          title: '',
+          diets:'',
+          summary:'',
+          healthScore:''
+        })
+        setErrorRepetido('')
+        setSinCompletar('')
     }
 
-
     const handleSelect = (e) => {
+      
       setRecipe({
         ...recipe,
         diets:[...recipe.diets, e.target.value]
@@ -80,12 +85,14 @@ function Formulario() {
     }
     const handleSubmitForm = (e) => {
         e.preventDefault()
+
         if(recipe.summary === '' && recipe.title === '' && recipe.healthScore === '' && recipe.diets.length === 0){
-          console.log('entre')
-          return setErrors(validate(recipe))
+          return setSinCompletar(`Hay que completar obligatoriamente Nombre, summary, HealthScore, y seleccionar una dieta`)
         }
         if(recipe.title === ''){
-          return setErrors(validate(recipe))
+          return setErrors({
+            title : 'No seleccionaste un title'
+          })
         }
         if(recipe.title){
           let find = simbols.find(e => recipe.title.includes(e))
@@ -94,13 +101,19 @@ function Formulario() {
         }
         }
         if(recipe.summary === ''){
-          return setErrors(validate(recipe))
+          return setErrors({
+            summary:'No seleccionaste summary'
+          })
         }
         if(recipe.diets.length === 0){
-          return setErrors(validate(recipe))
+          return setErrors({
+            diets: 'No seleccionaste dietas'
+          })
         }
         if(recipe.healthScore === ''){
-          return setErrors(validate(recipe))
+          return setErrors({
+            healthScore:'no seleccionaste healtscore'
+          })
         }
         if(Number(recipe.healthScore) < 0 || Number(recipe.healthScore) > 100){
           return setErrors(validate(recipe))
@@ -108,8 +121,14 @@ function Formulario() {
         if(recipe.image.length === 0){
           recipe.image = 'http://img.viajeauruguay.com/fettuccine-alfredo-2.jpg' // si no ponen imagen ponemos esta.
         }
+        let repeatTitle = allRecipes.filter(e => e.title === recipe.title)
+        if(repeatTitle.length){
+        return setErrorRepetido(`el nombre: ${recipe.title} ya existe`)
+        }
+        
+        history.push('/home')
         dispatch(createRecipe(recipe))
-        // history.push('/home')
+
         setRecipe({
           title: '',
           summary: '',
@@ -119,10 +138,13 @@ function Formulario() {
           image:'',
           diets:[]
       })
-      setCreado('Receta creada con éxito')
+      setErrorRepetido('')
     }
+
   return (
+
     <div className='contenedor'>
+
         <Link to="/home"><button className='button-home'>Home</button></Link>
         <form className='form'  onSubmit={(e)=> handleSubmitForm(e)}>
         <h3>Crea tu propia receta!</h3>
@@ -132,13 +154,16 @@ function Formulario() {
             <br/>
             {errors.title && (
             <span className='error'>{errors.title}</span>
-            
-        )}
+            )}
+            {
+              errorRepetido && (
+                <span className='error'>{errorRepetido}</span>
+              )
+            }
             <br />
             <label>Resumen: </label>
             <textarea value={recipe.summary} name="summary" type='text'  onChange={(e)=> handleChange(e)} />
             <br />
-              {/*aca van los erorres entre medio de estos */}
               {errors.summary && (
             <span className='error'>{errors.summary}</span>
             
@@ -174,18 +199,28 @@ function Formulario() {
             
         )}
         <br/>
-        {errors.todos && (
-            <span className='error'>{errors.todos}</span>
-            
+        {sinCompletar && (
+          <span className='error'>{sinCompletar}</span>
         )}
-            <br />
-            {
-              creado  ? <span>{creado}</span> : ''
-            }
+            <br/>
+            <br/>
             <br/>
             <button type="submit">Crear Receta</button>
             </div>
+            <span>Podes ver tu receta abajo</span>
         </form>
+
+        <h1 className='tu-receta'>TU RECETA: </h1>
+        {recipe.title ? <div className='container-recipecreada'> 
+              <h2 className='recipe-title'>{recipe.title}</h2>
+              <h5 className='dieta'>{recipe.diets + ''}</h5>
+              <img className='recipe-img' src={recipe.image} />
+              <br />
+              {recipe.healthScore > 50 ? <label className='healthScore-green'>💚 %{recipe.healthScore}</label>
+            :<label className='healthScore-red'>⚠️ %{recipe.healthScore}</label>
+            }
+              </div> :''}
+
     </div>
   )
 }

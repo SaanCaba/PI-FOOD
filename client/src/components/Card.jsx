@@ -24,9 +24,10 @@ function Card({title, image, diet, id, healthScore}) {
         <h5 className='dieta'>Dieta: {diet}</h5>
         <div className='div-img'>
         <img className='img' src={image} alt='image dont found' width="300px" height="350px" />
-        </div>
+        <br />
         {healthScore > 50 ? <label className='healthScore-green'>💚 %{healthScore}</label>
         :<label className='healthScore-red'>⚠️ %{healthScore}</label>}
+        </div>
         <Link to={`/recipe/${id}`} className='link'>
           <label className='details'>Details</label>
           </Link>

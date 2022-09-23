@@ -10,13 +10,17 @@ import './styles/Home.css'
 import Loader from './Loader'
 import refresh from'./styles/imagenes/refresh.png'
 import flecha from './gifs/flecha2.png'
-import flechaarriba from './gifs/flecha2.png'
 
 function Home() {
 
     const dispatch = useDispatch()
     const allRecipes = useSelector(state => state.recipes)
     const [orden, setOrden] = useState('')
+
+    const [error, setErrors] = useState({
+        dontFound : ''
+    })
+
     // -----PAGINADO-----
     //pagina actual, 1 porque arranco el la primer pag
     const [currentPage, setCurrentPage] = useState(1)
@@ -46,25 +50,37 @@ function Home() {
         dispatch(getRecipes())
         // resetea todo devuelta!
     }
-
+    
     const handleFilterDiets =  (e) => {
         e.preventDefault()
+        console.log(allRecipes)
+        if(allRecipes.length === 0){
+         return   setErrors({
+                dontFound: 'no hay nada con ese tipo de dieta'
+            })
+        }
         if(e.target.value === 'vegetarian'){
+            setCurrentPage(1)
             return dispatch(filterByVegetarian(e.target.value))
         }
-        dispatch(filterRecipesByDiets(e.target.value))
         setCurrentPage(1);
+        setErrors({
+            dontFound:''
+        })
+        dispatch(filterRecipesByDiets(e.target.value))
     }
 
     const handleFilterDb = (e) => {
         e.preventDefault()
+        setCurrentPage(1);
         dispatch(filterRecipesByDb(e.target.value))
     }
     
     const handleFilterByOrder = (e) => {
         e.preventDefault();
+        setCurrentPage(1);
         dispatch(filterRecipesByOrderBk(e.target.value))
-        setCurrentPage(1);// aca seteo para que arranque a ordenar desde la pagina 1
+        // setCurrentPage(1);// aca seteo para que arranque a ordenar desde la pagina 1
         // setOrden se usa para que modifique el estado actual y renderize
         // es clave, sin esto no funciona, simplemente es un estado local que inicia vacio, y cada vez que se ejecuta
         // el accionar del filtro, cambia los valores de 'orden', para que se ejecute
@@ -93,6 +109,7 @@ function Home() {
         </button>
         <SearchBar />
         <div className='cont-select'>
+            <h2 className='title-selects'>Ordenamientos</h2>
             <div className='selects'>
             <select className='slc-ord' onChange={(e)=> handleFilterByOrder(e)}>
                 <option value='ord'>Ordenar</option>
@@ -132,7 +149,11 @@ function Home() {
             allRecipes={allRecipes.length} // necesitamos un valor numerico, por eso el length
             paginado= {paginado}
             />
-
+            {
+                error.dontFound && (
+                    <h1>{error.dontFound}</h1>
+                )
+            }
             <div className='container-cards'>
             <div className='cards'>
         {allRecipes.length>0? currentRecipes?.map(e => {

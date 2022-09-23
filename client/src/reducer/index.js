@@ -37,7 +37,6 @@ function rootReducer(state = initialState, action){
                 : allRec.filter(e => 
                     e.diets.find(e => e.name === action.payload))
                     // e.diets.find(e => e.name === action.payload)}); console.log(filtrado)
-                if(filtrado.length === 0) alert('No hay dietas de ese tipo.')
             return{
                 ...state,
                 recipes: filtrado
@@ -45,8 +44,6 @@ function rootReducer(state = initialState, action){
         case FILTER_BY_VEGETARIAN:
             const allRecVeg = state.allRecipes
             const filtradoVeg = allRecVeg.filter(e => e.vegetarian === true)
-            console.log(filtradoVeg)
-            if(filtradoVeg.length === 0) alert('No hay dietas de ese tipo.')
             return {
                 ...state,
                 recipes: filtradoVeg

@@ -6,7 +6,6 @@ function Loader() {
   return (
           <div className='contenedor-loader'>
             <img  className='loader' src={Animation} alt='' />
-            <br/>
             <span className='loading'>Loading...</span>
             </div>
   )
