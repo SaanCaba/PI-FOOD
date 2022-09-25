@@ -15,7 +15,6 @@ router.get('/', async (req,res) => {
         let recipeName = await allRecipes.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
       return  recipeName.length ? res.json(recipeName) : res.status(404).send('no hay ninguna receta con ese nombre')
     }else{
-        //este caso es cuando no hay query, y devuelvo
         return res.json(allRecipes)
     }
 // ------------ USO UNICAMENTE LAS DE BASE DE DATOS, API CAIDA.--------------------
@@ -37,8 +36,6 @@ router.get('/:idReceta', async (req,res)=> {
     const {idReceta} = req.params;
 
     try {
-        if(!idReceta) return res.status(404).send('Falta el id del elemento')
-
         if(idReceta.length > 7){
             // este id es creado por post. y tiene el id de UUID.
             let dbInfo = await getDb();
@@ -75,7 +72,7 @@ router.get('/:idReceta', async (req,res)=> {
 
         console.log(error)
 
-        res.status(404).json({err: 'error! en /recipes/:idReceta'})
+        res.status(404).json({err: error})
 
     }
 

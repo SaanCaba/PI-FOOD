@@ -41,7 +41,7 @@ export function filterRecipesByDiets(payload){
 
 export function filterByVegetarian(payload){
     return {
-        type: FILTER_BY_VEGETARIAN, payload:payload
+        type: FILTER_BY_VEGETARIAN, payload: payload
     }
 }
 
@@ -102,7 +102,7 @@ export function clearRecipeDetail(){
 export function createRecipe(payload){
    return async function(dispatch){
     let json = await axios.post(`http://localhost:3001/recipes`, payload)
-    return json
+    return dispatch({type: CREATE_RECIPE, payload: json.data})
     }
 }
 

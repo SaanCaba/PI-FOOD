@@ -17,10 +17,6 @@ function Home() {
     const allRecipes = useSelector(state => state.recipes)
     const [orden, setOrden] = useState('')
 
-    const [error, setErrors] = useState({
-        dontFound : ''
-    })
-
     // -----PAGINADO-----
     //pagina actual, 1 porque arranco el la primer pag
     const [currentPage, setCurrentPage] = useState(1)
@@ -54,19 +50,11 @@ function Home() {
     const handleFilterDiets =  (e) => {
         e.preventDefault()
         console.log(allRecipes)
-        if(allRecipes.length === 0){
-         return   setErrors({
-                dontFound: 'no hay nada con ese tipo de dieta'
-            })
-        }
         if(e.target.value === 'vegetarian'){
             setCurrentPage(1)
             return dispatch(filterByVegetarian(e.target.value))
         }
         setCurrentPage(1);
-        setErrors({
-            dontFound:''
-        })
         dispatch(filterRecipesByDiets(e.target.value))
     }
 
@@ -149,11 +137,7 @@ function Home() {
             allRecipes={allRecipes.length} // necesitamos un valor numerico, por eso el length
             paginado= {paginado}
             />
-            {
-                error.dontFound && (
-                    <h1>{error.dontFound}</h1>
-                )
-            }
+            
             <div className='container-cards'>
             <div className='cards'>
         {allRecipes.length>0? currentRecipes?.map(e => {

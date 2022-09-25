@@ -37,6 +37,7 @@ function rootReducer(state = initialState, action){
                 : allRec.filter(e => 
                     e.diets.find(e => e.name === action.payload))
                     // e.diets.find(e => e.name === action.payload)}); console.log(filtrado)
+                if(filtrado.length === 0) alert(`Con el tipo de dieta ${action.payload}, no hay nada disponible`)
             return{
                 ...state,
                 recipes: filtrado
@@ -44,6 +45,8 @@ function rootReducer(state = initialState, action){
         case FILTER_BY_VEGETARIAN:
             const allRecVeg = state.allRecipes
             const filtradoVeg = allRecVeg.filter(e => e.vegetarian === true)
+            console.log(filtradoVeg)
+            if(filtradoVeg.length === 0) alert('Con el tipo de dieta vegetarian, no hay nada disponible')
             return {
                 ...state,
                 recipes: filtradoVeg
@@ -87,7 +90,6 @@ function rootReducer(state = initialState, action){
 
     const hsSort =
     action.payload === "+ saludable" ? allRecHs.sort((a,b) => b.healthScore - a.healthScore) : allRecHs.sort((a,b) => a.healthScore - b.healthScore)
-    console.log(hsSort)
     return{
         ...state,
         recipes: hsSort
@@ -102,7 +104,7 @@ function rootReducer(state = initialState, action){
     case SEARCH_RECIPE:
         const findRecipe =
         action.payload ? state.allRecipes.filter(e => e.title.toLowerCase().includes(action.payload)) : state.allRecipes
-        // if(findRecipe.length === 0) alert('xd')
+         if(findRecipe.length === 0) alert(`Con el nombre ${action.payload} no hay recetas, ingrese otra.`)
         return {
         ...state,
         recipes: findRecipe

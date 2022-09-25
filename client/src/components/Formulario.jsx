@@ -99,6 +99,11 @@ function Formulario() {
           if(find){
             return setErrors(validate(recipe))
         }
+        if(recipe.title.length >= 20){
+          return setErrors({
+            title: 'El title es demasiado grande.'
+          })
+        }
         }
         if(recipe.summary === ''){
           return setErrors({

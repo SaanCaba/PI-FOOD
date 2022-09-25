@@ -6,49 +6,35 @@ import { getRecipes } from '../actions/index'
 import './styles/SearchBar.css'
 
 function SearchBar() {
-    const findRecipes = useSelector(state => state.recipes)
     const[recipe, setRecipe] = useState('')
     const[errors, setErrors] = useState({
         vacio:'',
         msg:''
     })
-
+    
     const dispatch = useDispatch()
-    // const recipes = useSelector(state => state.recipes)
-
-    //manejador del input (input de busqueda)
-    const handleChange = (e) => {
-        e.preventDefault()
-        setErrors({
-            vacio:'',
-            msg:''
-        })
-        setRecipe(e.target.value)
-    }
     useEffect(()=>{
         dispatch(getRecipes())
     },[dispatch])
+    const handleChange = (e) => {
+        e.preventDefault()
+        setErrors({
+            vacio:''
+        })
+        setRecipe(e.target.value)
+        dispatch(findRecipe(e.target.value))
+    }
     //manejador del submit(boton de busqueda)
-
-
     const handleSubmit = (e) => {
         e.preventDefault()
-    dispatch(findRecipe(recipe.toLowerCase()))
     if(recipe === ''){
-      return  setErrors({
+      return setErrors({
             vacio : 'El buscador está vacío'
         })
     }
-    if(findRecipes.length === 0){
-        console.log(findRecipes)
-      return setErrors({
-        msg:'no se encontró nada con ese nombre'
-       })
-    }
     dispatch(findRecipe(recipe.toLowerCase()))
-    setErrors({
-        vacio:'',
-        msg:''
+   setErrors({
+    vacio:'',
     })
     }
   return (

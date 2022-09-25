@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getApi, getAllinfo, getDb} = require('./utils.js')
+const { getAllinfo } = require('./utils.js')
 
 router.get('/orderAZ-ZA', async(req,res) => {
     const {order} = req.query
@@ -36,18 +36,18 @@ router.get('/orderHS', async(req,res) =>{
     let recipes = await getAllinfo()
 
     try {
-            if(saludable=== 'massaludable'){
+            if(saludable === 'massaludable'){
             let orden = recipes.sort((a,b)=> b.healthScore - a.healthScore) 
             return res.json(orden)  
-            }else if(saludable === 'menossaludable'){
+            }
+            if(saludable === 'menossaludable'){
              let orden = recipes.sort((a,b)=> a.healthScore - b.healthScore)   
              return res.json(orden)   
-            }else{
-                return res.status(404).json('no existe')
             }
         // return res.json(recipes)
     } catch (error) {
         console.log(error)
+        return res.status(404).json(error)
     }
 
 })

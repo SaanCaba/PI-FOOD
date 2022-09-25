@@ -6,8 +6,6 @@ import './styles/Paginado.css'
 let number = 1;
 function Paginado({recipesPerPage, allRecipes, paginado}) {
     let pageNumbers = [];
-    let atras = '<'
-    let adelante = '>'
     //math.ceil devuelve un numero redondo.
     for(let i = 1; i <= Math.ceil(allRecipes/recipesPerPage); i++){
         pageNumbers.push(i)
@@ -17,7 +15,6 @@ function Paginado({recipesPerPage, allRecipes, paginado}) {
         e.preventDefault()
         if(number === pageNumbers[0]) return;
         number--
-        console.log(number)
         let prevPage = number
         return paginado(prevPage)
     }
@@ -26,14 +23,13 @@ function Paginado({recipesPerPage, allRecipes, paginado}) {
         e.preventDefault()
         if(number === pageNumbers.length) return;
         number++
-        console.log(number)
         let nextPage = number
       return paginado(nextPage)
     }
     return (
     <nav> 
         <ul className='paginado'>
-        <span><button className='btn-prev' onClick={(e)=> prevHandler(e)}> {atras} </button></span>
+        <span><button className='btn-prev' onClick={(e)=> prevHandler(e)}>{`<`}</button></span>
         {pageNumbers && 
         pageNumbers.map((n,i) => {
            return (
@@ -43,7 +39,7 @@ function Paginado({recipesPerPage, allRecipes, paginado}) {
             )
         })}
             {/* <span className='img-flechaNext' onClick={(e)=> nextHandler(e)}> <img className='img-flechaNext' src={flechaPrev}/></span> */}
-            <span><button  className='btn-next' onClick={(e)=> nextHandler(e)}> {adelante} </button></span>
+            <span><button  className='btn-next' onClick={(e)=> nextHandler(e)}> {`>`} </button></span>
         </ul>
     </nav>
   )

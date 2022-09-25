@@ -1,5 +1,5 @@
 .container{
-    background-image: url('./imagenes/fondodetails.png');
+    background-image:url('./imagenes/Diseño\ sin\ título\ \(3\).png');
     position: absolute;
     width: 100%;
     min-height: 100vh;
@@ -7,7 +7,8 @@
 
 
 .btn-home{
-    margin: 10px;
+    background-image: url('./imagenes/fondodetails.png');
+    margin-top: 30px;
     padding:10px;
     border-radius: 10%;
     font-weight: bold;
@@ -16,14 +17,17 @@
     color: white;
     border: none;
     cursor: pointer;
+    border: 2px solid black;
 }
 
 .cont-details{
+    background-image: url('./imagenes/fondodetails.png');
     height: max-content;
-    border: 12px solid black;
-    margin-left: 10px;
-    margin-right: 10px;
-    
+    border: 3px solid rgb(8, 8, 8);
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     border-radius: 10px;
 }
 
@@ -45,7 +49,7 @@
 }
 
 .dieta-detail{
-    color: rgba(255, 255, 255, 0.948);
+    color: rgba(123, 230, 101, 0.948);
     width: max-content;
     height: max-content;
     margin: auto;
@@ -54,7 +58,7 @@
 
 .dieta-detail:hover{
     font-size: 25px;
-    transition: 1s;
+    transition: 3s;
 }
 .summary{
     display: flex;
@@ -67,6 +71,7 @@
     background-color: white;
     border-radius: 10px;
     padding: 20px;
+    border: 2px solid black;
 }
 .steps-detail{
       display: flex;
@@ -79,9 +84,12 @@
     border-radius: 10px;
     padding: 20px; 
     margin-bottom: 20px;
+    border: 2px solid black;
+
 }
 
 .healthscore-detail-green{
+    border: 2px solid black;
     display: block;
     width: max-content;
     height: max-content;
@@ -93,6 +101,7 @@
     font-weight: bold;
 }
 .healthscore-detail-red{
+    border: 2px solid black;
     display: block;
     width: max-content;
     height: max-content;
@@ -104,6 +113,7 @@
     font-weight: bold;
 }
 .dishtype{
+    border: 2px solid black;
     display: block;
     width: max-content;
     height: max-content;
